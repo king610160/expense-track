@@ -1,12 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const SaveMoney = require('../../models/saveMoney')
+const ExpenseTrack = require('../../models/expenseTrack')
 
 router.get("/", (req, res) => {
-    SaveMoney.find()   // 加入查詢條件
+    ExpenseTrack.find()   // 加入查詢條件
     .lean()
     .sort({ _id: 'asc' }) 
-    .then(saveMoney => res.render("index", { saveMoney }))
+    .then(expenseTrack => res.render("index", { expenseTrack }))
     .catch(err => console.log(err))
 })
 

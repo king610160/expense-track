@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const saveMoneySchema = new Schema({
+const expenseTrackSchema = new Schema({
   event: { type: String, required: true },
   // category: { type: String, required: true },
   // money: { type: Number, required: true },
@@ -17,4 +17,4 @@ const saveMoneySchema = new Schema({
   // }
 })
 
-module.exports = mongoose.model("saveMoney", saveMoneySchema)
+module.exports = mongoose.model("expenseTrack", expenseTrackSchema)

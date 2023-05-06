@@ -3,7 +3,7 @@ if (process.env.MONGODB_URI !== 'production') {
   }
 
 const mongoose = require('mongoose')
-const saveMoney = require('../saveMoney') // 載入 todo model
+const expenseTrack = require('../expenseTrack') // 載入 todo model
 
 
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
@@ -14,7 +14,7 @@ db.on('error', () => {
 db.once('open', () => {
   console.log('mongodb connected!')
   for (let i = 0; i < 10; i++) {
-    saveMoney.create({event:`event-${i}`})
+    expenseTrack.create({event:`event-${i}`})
   }
   console.log('done')
 })
