@@ -1,7 +1,21 @@
-<ul>
-  {{#each expenseTrack}}
-    <li>
-      {{this.event}}
+
+<div>
+  <ul class="list-group">
+    {{#each expenseTrack}}
+    <li class="list-group-item justify-content-between">
+      <div class="row">
+        <div class="col-auto me-auto">
+          <h6 class="card-title mb-1 text-secondary">{{this.event}}</h6>
+        </div>
+        <div class="col-auto">
+          <a class="btn btn-success" href="./expenseTrack/{{ this._id }}/edit">edit</a>
+          <form action="./expenseTrack/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+            <button class="btn btn-danger" type="submit">delete</button>
+          </form>
+        </div>
+      </div>
     </li>
-  {{/each}}
-</ul>
+    {{/each}}
+    <a href="/expenseTrack/new" class="btn btn-primary mb-3">Create</a>
+  </ul>
+</div>
