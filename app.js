@@ -48,5 +48,5 @@ app.use((req, res, next) => {
 app.use(routes)
 
 app.listen(port, () => {
-  console.log(`Express is listening on localhost:${port}`)
+  console.log(`Expense-track is listening on localhost:${port}`)
 })

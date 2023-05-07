@@ -1,21 +1,45 @@
+<div class="container mt-5 col-md-8 m-auto">
+  <div class="form-floating mb-5 text-center">
+    <input type="text" class="form-control" id="category" placeholder="食衣住行" list="categoryOptions" name="category" required />
+    {{! 使用datalist，讓使用者可選擇或自行輸入 }}
+    <datalist id="categoryOptions">
+      <option>家居物業</option>
+      <option>交通出行</option>
+      <option>休閒娛樂</option>
+      <option>餐飲食品</option>
+      <option>其他</option>
+    </datalist>
+    <label for="floatingSelect">選擇分類</label>
+  </div>
+  
+  <div class="container text-center d-flex justify-content-between mb-3">
+    <h3>總金額：</h3>
+    <p class="text-danger fs-1" id="totalAmount">{{sum}}</p>
+  </div>
 
-<div>
-  <ul class="list-group">
-    {{#each expenseTrack}}
-    <li class="list-group-item justify-content-between">
-      <div class="row">
-        <div class="col-auto me-auto">
-          <h6 class="card-title mb-1 text-secondary">{{this.event}}</h6>
+  <div>
+    <ul class="list-group">
+      {{#each expenseTrack}}
+      <li class="list-group-item justify-content-between mb-3">
+        <div class="row justify-content-between">
+          <div class="col">
+            <h3 class="card-title mb-1 text-secondary ">{{this.event}}</h3>
+            <p class="card-title mb-1 text-secondary fs-6">{{this.date}}</p>
+          </div>
+          <div class="col-auto">
+            <h1 class="card-title mb-1 text-secondary ">{{this.money}}</h1>
+          </div>
+
         </div>
-        <div class="col-auto">
-          <a class="btn btn-success" href="./expenseTrack/{{ this._id }}/edit">edit</a>
-          <form action="./expenseTrack/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
-            <button class="btn btn-danger" type="submit">delete</button>
-          </form>
-        </div>
-      </div>
-    </li>
-    {{/each}}
-    <a href="/expenseTrack/new" class="btn btn-primary mb-3">Create</a>
-  </ul>
+          <div class="col-auto">
+            <a class="btn btn-success" href="./expenseTrack/{{ this._id }}/edit">edit</a>
+            <form action="./expenseTrack/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+              <button class="btn btn-danger" type="submit">delete</button>
+            </form>
+          </div>
+      </li>
+      {{/each}}
+      <a href="/expenseTrack/new" class="btn btn-primary mb-3">Create</a>
+    </ul>
+  </div>
 </div>
