@@ -4,8 +4,6 @@ if (process.env.PROCESS_ENV !== 'production') {
 }
 
 const db = require('../../config/mongoose')
-const ExpenseTrack = require("../expenseTrack")
-const ExpenseTrackList = require("./expenseTrack.json").results
 const Member = require('../users')
 const memberData = require('./users.json')
 
@@ -20,18 +18,9 @@ db.once("open", () => {
         email: USER.email,
         password: hash
       }))
-      .then(user => {
-        const userId = user._id
-        const name = user.name
-        let expenseTrack = []
-        if (name === memberData[0].name) {
-          expenseTrack = ExpenseTrackList.slice(0, 5)
-        } else {
-          expenseTrack = ExpenseTrackList.slice(5, 10)
-        }
-        return ExpenseTrack.create(
-          expenseTrack.map(r => Object.assign(r, { userId }))
-        )
+      .then(() => {
+        db.close()
+        process.exit()
       })
       .catch(err => console.log(err))
   })
