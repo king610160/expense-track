@@ -7,7 +7,7 @@ const Category = require("../../models/category")
 router.get("/new", (req, res) => {
   return Category.find()
     .lean()
-    .then((categories) => res.render("new", { categories }))
+    .then((category) => res.render("new", { category}))
     .catch((err) => console.log(err));
 })
 
@@ -31,9 +31,16 @@ router.post("/", (req, res) => {
 router.get("/:id/edit", (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  return ExpenseTrack.findOne({ userId,_id })
+
+  return Category.find()
     .lean()
-    .then(expenseTrack => res.render("edit", { expenseTrack }))
+    .then((category) => {
+      return ExpenseTrack.findOne({ userId, _id })
+        .populate("categoryId")
+        .lean()
+        .then(expenseTrack => res.render("edit", { expenseTrack, category }))
+        .catch(err => console.log(err))
+      })
     .catch(err => console.log(err))
 })
 
@@ -41,8 +48,8 @@ router.get("/:id/edit", (req, res) => {
 router.put("/:id", (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
-  const info = req.body
-  return ExpenseTrack.findOneAndUpdate({ userId, _id }, info)
+  const { event, date, categoryId, money } = req.body
+  return ExpenseTrack.findOneAndUpdate({ userId, _id }, { event, date, categoryId, money })
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))
 })
