@@ -7,7 +7,7 @@ if (process.env.NODE_ENV !== 'production') {
 const express = require('express')
 const session = require('express-session')
 const app = express()
-const port = process.env.PORT
+const port = 3000
 const exphbs = require('express-handlebars')
 const methodOverride = require("method-override")
 const flash = require('connect-flash')
