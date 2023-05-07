@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const ExpenseTrack = require('../../models/expenseTrack')
-const Category = require("../../models/category");
-// const CategorySeed = require('../../models/seed/categorySeeder').results
+const Category = require("../../models/category")
 
 
 
@@ -10,7 +9,7 @@ router.get("/", (req, res) => {
     const userId = req.user._id   // 變數設定
     ExpenseTrack.find({ userId })   // 加入查詢條件
     .lean()
-    .sort({ _id: 'asc' }) 
+    .sort({ date: 'asc' }) 
     .then((expenseTrack) => {
         let sum = 0
         let a = ''

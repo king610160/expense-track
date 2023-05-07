@@ -1,19 +1,30 @@
 const express = require('express')
 const router = express.Router()
 const ExpenseTrack = require('../../models/expenseTrack')
+const Category = require("../../models/category")
 
 // 新增頁面
 router.get("/new", (req, res) => {
-  res.render("new")
+  return Category.find()
+    .lean()
+    .then((categories) => res.render("new", { categories }))
+    .catch((err) => console.log(err));
 })
 
 // 新增帳目
 router.post("/", (req, res) => {
-  const info = req.body
-  info.userId = req.user._id
-  ExpenseTrack.create(info)
+  const { event, date, categoryId, money } = req.body
+  const userId = req.user._id
+
+  if (!event || !date || !categoryId || !money) {
+    return Category.findById(categoryId)
+      .lean()
+      .then(() => res.render(res.render("new", { event, date, money })));
+  }
+
+  return ExpenseTrack.create({ event, date, money, categoryId, userId })
     .then(() => res.redirect("/"))
-    .catch(err => console.log(err))
+    .catch((err) => console.log(err));
 })
 
 // 編輯頁面
@@ -26,7 +37,7 @@ router.get("/:id/edit", (req, res) => {
     .catch(err => console.log(err))
 })
 
-// 更新帳目
+// 編輯帳目
 router.put("/:id", (req, res) => {
   const userId = req.user._id
   const _id = req.params.id
