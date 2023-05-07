@@ -10,8 +10,7 @@ router.get("/new", (req, res) => {
 // 新增帳目
 router.post("/", (req, res) => {
   const info = req.body
-//   console.log(req.user)
-//   info.userId = req.user._id
+  info.userId = req.user._id
   ExpenseTrack.create(info)
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))
@@ -19,9 +18,9 @@ router.post("/", (req, res) => {
 
 // 編輯頁面
 router.get("/:id/edit", (req, res) => {
-//   const userId = req.user._id
+  const userId = req.user._id
   const _id = req.params.id
-  return ExpenseTrack.findOne({ _id })
+  return ExpenseTrack.findOne({ userId,_id })
     .lean()
     .then(expenseTrack => res.render("edit", { expenseTrack }))
     .catch(err => console.log(err))
@@ -29,19 +28,19 @@ router.get("/:id/edit", (req, res) => {
 
 // 更新帳目
 router.put("/:id", (req, res) => {
-//   const userId = req.user._id
+  const userId = req.user._id
   const _id = req.params.id
   const info = req.body
-  return ExpenseTrack.findOneAndUpdate({ _id }, info)
+  return ExpenseTrack.findOneAndUpdate({ userId, _id }, info)
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))
 })
 
 // 刪除帳目
 router.delete("/:id", (req, res) => {
-//   const userId = req.user._id
+  const userId = req.user._id
   const _id = req.params.id
-  return ExpenseTrack.findOne({ _id })
+  return ExpenseTrack.findOne({ userId, _id })
     .then(expenseTrack => expenseTrack.deleteOne())
     .then(() => res.redirect("/"))
     .catch(err => console.log(err))

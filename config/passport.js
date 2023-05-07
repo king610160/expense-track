@@ -15,14 +15,13 @@ module.exports = app => {
             if (!user) {
               return done(null, false, { message: '該email並未註冊！' })
             }
-            // return bcrypt.compare(password, user.password).then(isMatch => {
-            //   if (!isMatch) {
-            if (user.password !== password) {
+            return bcrypt.compare(password, user.password).then(isMatch => {
+              if (!isMatch) {
                 return done(null, false, { message: 'Email或密碼錯誤.' })
               }
               return done(null, user)
             })
-          // })
+          })
           .catch(err => done(err, false))
       }))
     // facebook登入
