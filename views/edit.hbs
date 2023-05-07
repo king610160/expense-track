@@ -1,4 +1,4 @@
-<h1 class="mb-1 expenseTrack-show-title">編輯帳目</h1>
+<h1 class="mb-1 expenseTrack-show-title">請修改你的支出</h1>
 <div class="container">
   <form action="/expenseTrack/{{expenseTrack._id}}?_method=PUT" method="POST">
     <div class="mb-3">
@@ -10,11 +10,11 @@
       <input type="text" class="form-control" id="category" placeholder="食衣住行" list="categoryOptions" name="category" value="{{expenseTrack.category}}" required />
       {{! 使用datalist，讓使用者可選擇或自行輸入 }}
       <datalist id="categoryOptions">
-        <option>食</option>
-        <option>衣</option>
-        <option>住</option>
-        <option>行</option>
-        <option>交通</option>
+        <option>家居物業</option>
+        <option>交通出行</option>
+        <option>休閒娛樂</option>
+        <option>餐飲食品</option>
+        <option>其他</option>
       </datalist>
     </div>
     <div class="mb-3">
