@@ -1,6 +1,6 @@
 # 我的家庭記帳本
 
-![Index page about Restaurant List](./public/image/home.png)
+![Index page about Restaurant List](./public/home.png)
 
 ## 介紹
 
@@ -10,17 +10,17 @@
 
 - 可使用facebook登入
 - 查看所有開支
-![Index page about Restaurant List](./public/image/home.png)
+![Index page about Restaurant List](./public/home.png)
 - 新增帳目
-![Index page about Restaurant List](./public/image/add.png)
+![Index page about Restaurant List](./public/add.png)
 - 編輯帳目
-![Index page about Restaurant List](./public/image/edit.png)
+![Index page about Restaurant List](./public/edit.png)
 - 刪除帳目
 
 ## 開始使用
 
 1. 請先確認有安裝 node.js 與 npm
-2. 使用git clone專案 clone 到本地
+2. 使用git clone https://github.com/king610160/expense-track 至本地
 3. 在本地開啟之後，透過終端機進入資料夾，輸入：
 
    ```bash
