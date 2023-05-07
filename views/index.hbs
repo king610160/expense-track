@@ -31,17 +31,20 @@
           <div class="col-auto">
             <h1 class="card-title mb-1 text-secondary ">{{this.money}}</h1>
           </div>
-
-        </div>
           <div class="col-auto">
             <a class="btn btn-success" href="./expenseTrack/{{ this._id }}/edit">edit</a>
             <form action="./expenseTrack/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
               <button class="btn btn-danger" type="submit">delete</button>
             </form>
           </div>
+        </div>
       </li>
       {{/each}}
       <a href="/expenseTrack/new" class="btn btn-primary mb-3">Create</a>
     </ul>
+    
   </div>
+
+  
+
 </div>
